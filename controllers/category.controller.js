@@ -63,7 +63,7 @@ exports.editCategoryById = catchAsync(async (req, res) => {
     const updatedCategory = await Category.findByIdAndUpdate(
         id,
         { name, slug, parentId },
-        { new: true, runValidators: true }
+        { returnDocument: 'after', runValidators: true }
     );
 
     if (!updatedCategory) {
@@ -82,7 +82,7 @@ exports.deleteCategorybyId = catchAsync(async (req, res) => {
     const deletedCategory = await Category.findByIdAndUpdate(
         id, 
         { isDeleted: true }, 
-        { new: true }
+        { returnDocument: 'after' }
     );
 
     if (!deletedCategory) {

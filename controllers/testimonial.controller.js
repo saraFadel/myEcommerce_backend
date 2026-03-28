@@ -30,7 +30,7 @@ exports.deleteMyTestimonial = catchAsync(async (req, res) => {
 exports.updateStatus = catchAsync(async (req, res) => {
     const { id } = req.params;
     const { status } = req.body;
-    const updated = await Testimonial.findByIdAndUpdate(id, { status }, { new: true });
+    const updated = await Testimonial.findByIdAndUpdate(id, { status }, { returnDocument: 'after' });
     res.status(200).json({ message: `Status updated to ${status}`, data: updated });
 });
 
